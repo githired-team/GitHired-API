@@ -6,7 +6,7 @@ C# API web Application that works as a melting pot for job searching and skills 
 ### Group Kanban: https://waffle.io/githired-team/GitHired-API
 
 ## Database Schema
-![Database Schema](assets/dbSchema.jpg)
+![Database Schema](assets/apiSchema.JPG)
 - Table Company: This table will contain the information for a company who is posting a job offer.
 - Table Jobs: This table will contain the information for the job listings
 - Table Required Skills: This table will list the skill key words from a job listing
