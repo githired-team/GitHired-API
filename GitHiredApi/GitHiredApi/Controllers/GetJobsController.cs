@@ -21,7 +21,7 @@ namespace GitHiredApi.Controllers
         //}
 
         [HttpGet]
-        public ActionResult<IEnumerable<JobPosting>> Jobs()
+        public ActionResult<IEnumerable<JobPosting>> Sample()
         {
             Job sampleJob = new Job();
             sampleJob.ID = 100;
@@ -36,10 +36,11 @@ namespace GitHiredApi.Controllers
             JobPosting samplePosting = new JobPosting(sampleJob, sampleSkills);
 
             JobsResponse sampleResponse = new JobsResponse(new JobPosting[] { samplePosting });
-
-
+            
             return Ok(sampleResponse);
         }
+
+        
 
     }
 }
