@@ -10,7 +10,7 @@ namespace GitHiredApi.Models
         public int ID { get; set; }
 
         //title=companyName
-        public string Title { get; set; }
+        public string Name { get; set; }
         public string Website { get; set; }
         public string Industry { get; set; }
         public string Headline { get; set; }

@@ -9,26 +9,23 @@ namespace GitHiredApi.Models
     public class RequiredSkills
     {
 
-        public skills skill { get; set; }
+        public Skills Skill { get; set; }
 
         public int JobID { get; set; }
 
-
-        public enum skills
-        {
-            [Display(Name = "c#")]
-            cSharp,
-            [Display(Name = "c++")]
-            cPlusPlus,
-            Java,
-            Javascript,
-            [Display(Name = "Unit Testing")]
-            UnitTesting
-
-        }
-
-
         //nav
-        public Job job { get; set; }
+        public Job Job { get; set; }
+    }
+    public enum Skills
+    {
+        [Display(Name = "c#")]
+        cSharp,
+        [Display(Name = "c++")]
+        cPlusPlus,
+        Java,
+        Javascript,
+        [Display(Name = "Unit Testing")]
+        UnitTesting
+
     }
 }
