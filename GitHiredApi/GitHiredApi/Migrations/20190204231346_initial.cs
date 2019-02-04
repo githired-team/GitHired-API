@@ -13,7 +13,7 @@ namespace GitHiredApi.Migrations
                 {
                     ID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Title = table.Column<string>(nullable: true),
+                    Name = table.Column<string>(nullable: true),
                     Website = table.Column<string>(nullable: true),
                     Industry = table.Column<string>(nullable: true),
                     Headline = table.Column<string>(nullable: true)
@@ -29,8 +29,8 @@ namespace GitHiredApi.Migrations
                 {
                     ID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Title = table.Column<string>(nullable: true),
                     CompanyID = table.Column<int>(nullable: false),
+                    JobTitle = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true),
                     Location = table.Column<string>(nullable: true),
                     WageRange = table.Column<string>(nullable: true)
@@ -47,17 +47,17 @@ namespace GitHiredApi.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "requiredskills",
+                name: "RequiredSkills",
                 columns: table => new
                 {
-                    skill = table.Column<int>(nullable: false),
+                    Skill = table.Column<int>(nullable: false),
                     JobID = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_requiredskills", x => new { x.skill, x.JobID });
+                    table.PrimaryKey("PK_RequiredSkills", x => new { x.Skill, x.JobID });
                     table.ForeignKey(
-                        name: "FK_requiredskills_Jobs_JobID",
+                        name: "FK_RequiredSkills_Jobs_JobID",
                         column: x => x.JobID,
                         principalTable: "Jobs",
                         principalColumn: "ID",
@@ -66,23 +66,23 @@ namespace GitHiredApi.Migrations
 
             migrationBuilder.InsertData(
                 table: "Companies",
-                columns: new[] { "ID", "Headline", "Industry", "Title", "Website" },
-                values: new object[,]
-                {
-                    { 1, "", "Technology", "Microsoft", "www.microsoft.com" },
-                    { 2, "", "e-commerce marketplace", "Groupon", "www.groupon.com" }
-                });
+                columns: new[] { "ID", "Headline", "Industry", "Name", "Website" },
+                values: new object[] { 1, "b", "a", "Redfin", "www.Redfin.com" });
 
             migrationBuilder.InsertData(
                 table: "Jobs",
-                columns: new[] { "ID", "CompanyID", "Description", "Location", "Title", "WageRange" },
-                values: new object[,]
-                {
-                    { 1, 0, "Experience with AngularJS, React, Backbone or other Model-View-Whatever frameworks ", "Seattle,WA", "Junior Web Develoer", "4k-5k monthly" },
-                    { 2, 0, "Solid understanding of Object Oriented Programming,Outstanding verbal and written communication skills", "Bellevue,WA", "Front-end Developer", "5k monthly" },
-                    { 3, 0, " Solid understanding of Object Oriented Programming", "Kirkland,WA", "Java Developer", "8k monthly" },
-                    { 4, 0, " Solid understanding of Object Oriented Programming", "Lynwood,WA", "Junior C# Developer", "5k-6k monthly" }
-                });
+                columns: new[] { "ID", "CompanyID", "Description", "JobTitle", "Location", "WageRange" },
+                values: new object[] { 1, 1, " Solid understanding of Object Oriented Programming", "Java Developer", "Kirkland,WA", "8k monthly" });
+
+            migrationBuilder.InsertData(
+                table: "Jobs",
+                columns: new[] { "ID", "CompanyID", "Description", "JobTitle", "Location", "WageRange" },
+                values: new object[] { 2, 1, "Solid understanding of Object Oriented Programming,Outstanding verbal and written communication skills", "Front-end Developer", "Bellevue,WA", "5k monthly" });
+
+            migrationBuilder.InsertData(
+                table: "Jobs",
+                columns: new[] { "ID", "CompanyID", "Description", "JobTitle", "Location", "WageRange" },
+                values: new object[] { 3, 1, "Solid understanding of Object Oriented Programming,Outstanding verbal and written communication skills", "Front-end Developer", "Bellevue,WA", "5k monthly" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Jobs_CompanyID",
@@ -90,15 +90,15 @@ namespace GitHiredApi.Migrations
                 column: "CompanyID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_requiredskills_JobID",
-                table: "requiredskills",
+                name: "IX_RequiredSkills_JobID",
+                table: "RequiredSkills",
                 column: "JobID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "requiredskills");
+                name: "RequiredSkills");
 
             migrationBuilder.DropTable(
                 name: "Jobs");

@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GitHiredApi.Migrations
 {
     [DbContext(typeof(GitHiredApiDbContext))]
-    [Migration("20190204200719_initial2")]
-    partial class initial2
+    [Migration("20190204231346_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -30,7 +30,7 @@ namespace GitHiredApi.Migrations
 
                     b.Property<string>("Industry");
 
-                    b.Property<string>("Title");
+                    b.Property<string>("Name");
 
                     b.Property<string>("Website");
 
@@ -42,18 +42,10 @@ namespace GitHiredApi.Migrations
                         new
                         {
                             ID = 1,
-                            Headline = "",
-                            Industry = "Technology",
-                            Title = "Microsoft",
-                            Website = "www.microsoft.com"
-                        },
-                        new
-                        {
-                            ID = 2,
-                            Headline = "",
-                            Industry = "e-commerce marketplace",
-                            Title = "Groupon",
-                            Website = "www.groupon.com"
+                            Headline = "b",
+                            Industry = "a",
+                            Name = "Redfin",
+                            Website = "www.Redfin.com"
                         });
                 });
 
@@ -67,9 +59,9 @@ namespace GitHiredApi.Migrations
 
                     b.Property<string>("Description");
 
-                    b.Property<string>("Location");
+                    b.Property<string>("JobTitle");
 
-                    b.Property<string>("Title");
+                    b.Property<string>("Location");
 
                     b.Property<string>("WageRange");
 
@@ -78,24 +70,53 @@ namespace GitHiredApi.Migrations
                     b.HasIndex("CompanyID");
 
                     b.ToTable("Jobs");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            CompanyID = 1,
+                            Description = " Solid understanding of Object Oriented Programming",
+                            JobTitle = "Java Developer",
+                            Location = "Kirkland,WA",
+                            WageRange = "8k monthly"
+                        },
+                        new
+                        {
+                            ID = 2,
+                            CompanyID = 1,
+                            Description = "Solid understanding of Object Oriented Programming,Outstanding verbal and written communication skills",
+                            JobTitle = "Front-end Developer",
+                            Location = "Bellevue,WA",
+                            WageRange = "5k monthly"
+                        },
+                        new
+                        {
+                            ID = 3,
+                            CompanyID = 1,
+                            Description = "Solid understanding of Object Oriented Programming,Outstanding verbal and written communication skills",
+                            JobTitle = "Front-end Developer",
+                            Location = "Bellevue,WA",
+                            WageRange = "5k monthly"
+                        });
                 });
 
             modelBuilder.Entity("GitHiredApi.Models.RequiredSkills", b =>
                 {
-                    b.Property<int>("skill");
+                    b.Property<int>("Skill");
 
                     b.Property<int>("JobID");
 
-                    b.HasKey("skill", "JobID");
+                    b.HasKey("Skill", "JobID");
 
                     b.HasIndex("JobID");
 
-                    b.ToTable("requiredskills");
+                    b.ToTable("RequiredSkills");
                 });
 
             modelBuilder.Entity("GitHiredApi.Models.Job", b =>
                 {
-                    b.HasOne("GitHiredApi.Models.Company", "company")
+                    b.HasOne("GitHiredApi.Models.Company", "Company")
                         .WithMany("Jobs")
                         .HasForeignKey("CompanyID")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -103,8 +124,8 @@ namespace GitHiredApi.Migrations
 
             modelBuilder.Entity("GitHiredApi.Models.RequiredSkills", b =>
                 {
-                    b.HasOne("GitHiredApi.Models.Job", "job")
-                        .WithMany("requiredskills")
+                    b.HasOne("GitHiredApi.Models.Job", "Job")
+                        .WithMany("RequiredSkills")
                         .HasForeignKey("JobID")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
