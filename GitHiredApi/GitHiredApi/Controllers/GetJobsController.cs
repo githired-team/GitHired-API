@@ -25,7 +25,7 @@ namespace GitHiredApi.Controllers
         {
             Job sampleJob = new Job();
             sampleJob.ID = 100;
-            sampleJob.Title = "Software Dev";
+            sampleJob.JobTitle = "Software Dev";
             sampleJob.CompanyID = 100;
             sampleJob.Description = "Literally ur dream jopb plus free puppies every day";
             sampleJob.Location = "Antarctica";

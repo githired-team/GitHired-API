@@ -35,6 +35,16 @@ namespace GitHiredApi.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Companies");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            Headline = "b",
+                            Industry = "a",
+                            Name = "Redfin",
+                            Website = "www.Redfin.com"
+                        });
                 });
 
             modelBuilder.Entity("GitHiredApi.Models.Job", b =>
@@ -58,6 +68,35 @@ namespace GitHiredApi.Migrations
                     b.HasIndex("CompanyID");
 
                     b.ToTable("Jobs");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            CompanyID = 1,
+                            Description = " Solid understanding of Object Oriented Programming",
+                            JobTitle = "Java Developer",
+                            Location = "Kirkland,WA",
+                            WageRange = "8k monthly"
+                        },
+                        new
+                        {
+                            ID = 2,
+                            CompanyID = 1,
+                            Description = "Solid understanding of Object Oriented Programming,Outstanding verbal and written communication skills",
+                            JobTitle = "Front-end Developer",
+                            Location = "Bellevue,WA",
+                            WageRange = "5k monthly"
+                        },
+                        new
+                        {
+                            ID = 3,
+                            CompanyID = 1,
+                            Description = "Solid understanding of Object Oriented Programming,Outstanding verbal and written communication skills",
+                            JobTitle = "Front-end Developer",
+                            Location = "Bellevue,WA",
+                            WageRange = "5k monthly"
+                        });
                 });
 
             modelBuilder.Entity("GitHiredApi.Models.RequiredSkills", b =>
