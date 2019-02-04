@@ -15,5 +15,7 @@ namespace GitHiredApi.Models
         public string Location { get; set; }
         public string WageRange { get; set; }
 
+        //navi
+
     }
 }
