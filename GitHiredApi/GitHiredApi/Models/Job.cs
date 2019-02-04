@@ -8,6 +8,7 @@ namespace GitHiredApi.Models
     public class Job
     {
         public int ID { get; set; }
+        //jobtitle
         public string Title { get; set; }
 
         public int CompanyID { get; set; }
@@ -16,6 +17,8 @@ namespace GitHiredApi.Models
         public string WageRange { get; set; }
 
         //navi
+        public Company company { get; set; }
+        public ICollection<RequiredSkills> requiredskills { get; set; }
 
     }
 }
