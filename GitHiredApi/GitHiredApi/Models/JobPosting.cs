@@ -7,13 +7,19 @@ namespace GitHiredApi.Models
 {
     public class JobPosting
     {
-        public Job Job { get; set; }
-        public string[] Skills { get; set; }
+
+
+        public string JobTitle { get; set; }
+        public string Description { get; set; }
+        public string Location { get; set; }
+        public string WageRange { get; set; }
 
         public JobPosting(Job job, string[] skills)
         {
-            Job = job;
-            Skills = skills;
+            JobTitle = job.JobTitle;
+            Description = job.Description;
+            Location = job.Location;
+            WageRange = job.WageRange;
         }
     }
 }
