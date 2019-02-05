@@ -25,10 +25,36 @@ namespace GitHiredApi.Data
                 { ID=1,
                   Name="Redfin",
                   Website="www.Redfin.com",
+
+                  Industry="Real Estate",
+                  Headline="a"
+
+                },
+                 new Company
+                 {
+                     ID = 2,
+                     Name = "Microsoft",
+                     Website = "www.Microsoft.com",
+                     Industry = "Technology",
+                     Headline = "b"
+
+                 },
+                  new Company
+                  {
+                      ID = 3,
+                      Name = "Groupon",
+                      Website = "www.Groupon.com",
+                      Industry = "e-commerce Market",
+                      Headline = "c"
+
+                  }
+
+
                   Industry="a",
                   Headline="b"
                 }
               
+
                 );
 
 
@@ -57,7 +83,7 @@ namespace GitHiredApi.Data
                  new Job
                  {
                      ID = 3,
-                     CompanyID = 1,
+                     CompanyID = 2,
                      JobTitle = "Front-end Developer",
                      Description = "Solid understanding of Object Oriented Programming,Outstanding verbal and written communication skills",
                      Location = "Bellevue,WA",

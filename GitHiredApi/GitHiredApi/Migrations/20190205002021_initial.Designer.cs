@@ -3,14 +3,16 @@ using GitHiredApi.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace GitHiredApi.Migrations
 {
     [DbContext(typeof(GitHiredApiDbContext))]
-    partial class GitHiredApiDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190205002021_initial")]
+    partial class initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -126,23 +128,6 @@ namespace GitHiredApi.Migrations
                     b.HasIndex("JobID");
 
                     b.ToTable("RequiredSkills");
-
-                    b.HasData(
-                        new
-                        {
-                            Skill = 2,
-                            JobID = 1
-                        },
-                        new
-                        {
-                            Skill = 4,
-                            JobID = 2
-                        },
-                        new
-                        {
-                            Skill = 1,
-                            JobID = 2
-                        });
                 });
 
             modelBuilder.Entity("GitHiredApi.Models.Job", b =>
