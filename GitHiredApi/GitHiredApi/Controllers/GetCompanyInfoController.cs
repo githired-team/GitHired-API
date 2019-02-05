@@ -22,34 +22,29 @@ namespace GitHiredApi.Controllers
         }
 
 
-        // GET: api/Todo
+
+
         [HttpGet]
         public async Task<ActionResult> GetCompanies()
         {
-            List<Company> companies = await _context.Companies
-                  .ToListAsync();
-
-            //foreach (var item in companies)
-            //{
-            //    item.Jobs = await _context.Jobs.Where(jo => jo.CompanyID == item.ID).ToListAsync();
-
-            //}
-
-
-            return Ok (new { companies });
+            List<Company> companies = await _context.Companies.Include(r => r.Jobs)
+                                                              .ToListAsync();
+            return Ok(new { companies });
 
         }
-
-
+        
 
         // GET: api/Todo/5
         [HttpGet("{id}")]
         public async Task <ActionResult> GetCompany(int id)
         {
-            var company = await _context.Jobs.Where(jo => jo.CompanyID == id).ToListAsync();
 
-                
-            if (company== null)
+
+            Company company = await _context.Companies.Where(c => c.ID == id)
+                                                      .Include(c => c.Jobs)
+                                                      .FirstOrDefaultAsync();
+            if (company == null)
+
             {
                 return NotFound();
             }
