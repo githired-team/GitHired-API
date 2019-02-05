@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GitHiredApi.Migrations
 {
     [DbContext(typeof(GitHiredApiDbContext))]
-    [Migration("20190204231346_initial")]
+    [Migration("20190205002021_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -42,10 +42,26 @@ namespace GitHiredApi.Migrations
                         new
                         {
                             ID = 1,
-                            Headline = "b",
-                            Industry = "a",
+                            Headline = "a",
+                            Industry = "Real Estate",
                             Name = "Redfin",
                             Website = "www.Redfin.com"
+                        },
+                        new
+                        {
+                            ID = 2,
+                            Headline = "b",
+                            Industry = "Technology",
+                            Name = "Microsoft",
+                            Website = "www.Microsoft.com"
+                        },
+                        new
+                        {
+                            ID = 3,
+                            Headline = "c",
+                            Industry = "e-commerce Market",
+                            Name = "Groupon",
+                            Website = "www.Groupon.com"
                         });
                 });
 
@@ -93,7 +109,7 @@ namespace GitHiredApi.Migrations
                         new
                         {
                             ID = 3,
-                            CompanyID = 1,
+                            CompanyID = 2,
                             Description = "Solid understanding of Object Oriented Programming,Outstanding verbal and written communication skills",
                             JobTitle = "Front-end Developer",
                             Location = "Bellevue,WA",

@@ -67,7 +67,17 @@ namespace GitHiredApi.Migrations
             migrationBuilder.InsertData(
                 table: "Companies",
                 columns: new[] { "ID", "Headline", "Industry", "Name", "Website" },
-                values: new object[] { 1, "b", "a", "Redfin", "www.Redfin.com" });
+                values: new object[] { 1, "a", "Real Estate", "Redfin", "www.Redfin.com" });
+
+            migrationBuilder.InsertData(
+                table: "Companies",
+                columns: new[] { "ID", "Headline", "Industry", "Name", "Website" },
+                values: new object[] { 2, "b", "Technology", "Microsoft", "www.Microsoft.com" });
+
+            migrationBuilder.InsertData(
+                table: "Companies",
+                columns: new[] { "ID", "Headline", "Industry", "Name", "Website" },
+                values: new object[] { 3, "c", "e-commerce Market", "Groupon", "www.Groupon.com" });
 
             migrationBuilder.InsertData(
                 table: "Jobs",
@@ -82,7 +92,7 @@ namespace GitHiredApi.Migrations
             migrationBuilder.InsertData(
                 table: "Jobs",
                 columns: new[] { "ID", "CompanyID", "Description", "JobTitle", "Location", "WageRange" },
-                values: new object[] { 3, 1, "Solid understanding of Object Oriented Programming,Outstanding verbal and written communication skills", "Front-end Developer", "Bellevue,WA", "5k monthly" });
+                values: new object[] { 3, 2, "Solid understanding of Object Oriented Programming,Outstanding verbal and written communication skills", "Front-end Developer", "Bellevue,WA", "5k monthly" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Jobs_CompanyID",
