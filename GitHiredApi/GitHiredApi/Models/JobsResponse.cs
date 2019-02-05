@@ -14,5 +14,10 @@ namespace GitHiredApi.Models
         {
             JobPostings = postings;
         }
+
+        public JobsResponse()
+        {
+            JobPostings = new JobPosting[] { };
+        }
     }
 }
