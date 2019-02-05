@@ -22,12 +22,11 @@ namespace GitHiredApi.Data
                 
                 
                 new Company
-                { ID=1,
-                  Name="Redfin",
-                  Website="www.Redfin.com",
-
-                  Industry="Real Estate",
-                  Headline="a"
+                {   ID=1,
+                    Name="Redfin",
+                    Website="www.Redfin.com",
+                    Industry="Real Estate",
+                    Headline="a"
 
                 },
                  new Company
