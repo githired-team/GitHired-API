@@ -11,7 +11,7 @@ namespace GitHiredApi.Data
     {
         public GitHiredApiDbContext(DbContextOptions<GitHiredApiDbContext> options) : base(options)
         {
-
+            
         }
 
 
@@ -100,8 +100,7 @@ namespace GitHiredApi.Data
                 {
                     Skill = Skills.cPlusPlus,
                     JobID = 2
-                }
-                );
+                });
         }
 
     

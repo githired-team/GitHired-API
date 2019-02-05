@@ -21,22 +21,17 @@ namespace GitHiredApi.Controllers
             _context = context;
         }
 
-        public async Task <ActionResult<IEnumerable<Company>>> GetCompanies()
+
+
+        [HttpGet]
+        public async Task<ActionResult> GetCompanies()
         {
-          var companies =await _context.Companies
-                .Include(r => r.Jobs)
-                .ToArrayAsync();
-            foreach (var item in companies)
-            {
-                //item.Jobs = await _context.Jobs.Where(jo => jo.CompanyID == item.ID).ToArrayAsync();
-                item.Jobs = item.Jobs.ToArray();
+            List<Company> companies = await _context.Companies.Include(r => r.Jobs)
+                                                              .ToListAsync();
+            return Ok(new { companies });
 
-            }
-
-            return Ok(new { results=companies });
         }
-
-    
+        
 
         // GET: api/Todo/5
         [HttpGet("{id}")]
@@ -44,7 +39,7 @@ namespace GitHiredApi.Controllers
         {
             var company = await _context.Companies.FindAsync(id);
 
-            if (company== null)
+            if (company == null)
             {
                 return NotFound();
             }
