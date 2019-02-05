@@ -20,28 +20,8 @@ namespace GitHiredApi.Controllers
             _context = context;
         }
 
-        //[HttpGet]
-        //public ActionResult<IEnumerable<JobPosting>> Get()
-        //{
-        //    Job sampleJob = new Job();
-        //    sampleJob.ID = 100;
-        //    sampleJob.JobTitle = "Software Dev";
-        //    sampleJob.CompanyID = 100;
-        //    sampleJob.Description = "Literally ur dream jopb plus free puppies every day";
-        //    sampleJob.Location = "Antarctica";
-        //    sampleJob.WageRange = "$0 to $1 yearly salary, DOE";
-
-        //    string[] sampleSkills = new string[] { "C#", ".NET Core", "Building APIs" };
-
-        //    JobPosting samplePosting = new JobPosting(sampleJob, sampleSkills);
-
-        //    JobsResponse sampleResponse = new JobsResponse(new JobPosting[] { samplePosting });
-
-        //    return Ok(sampleResponse);
-        //}
-
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<JobPosting>>> Get()
+        public async Task<ActionResult<JobsResponse>> Get()
         {
             List<Job> allJobs = await _context.Jobs.Include(job => job.Company)
                                                    .Include(job => job.RequiredSkills)
@@ -49,7 +29,7 @@ namespace GitHiredApi.Controllers
 
             if (allJobs == null)
             {
-                return new List<JobPosting>();
+                return new JobsResponse(new JobPosting[] { });
             }
 
             List<JobPosting> allPostings = new List<JobPosting>();
@@ -75,8 +55,11 @@ namespace GitHiredApi.Controllers
                 allPostings.Add(new JobPosting(job, skills, company));
             }
 
-            return allPostings;
+            
+            return new JobsResponse(allPostings.ToArray());
         }
+
+
 
         
 
