@@ -33,18 +33,19 @@ namespace GitHiredApi.Controllers
             if (query == null || query == "")
             {
                 jobs = await _context.Jobs.Include(job => job.Company)
-                                                       .Include(job => job.RequiredSkills)
-                                                       .ToListAsync();
-                return Ok(new { jobs });
-            } 
+                                          .Include(job => job.RequiredSkills)
+                                          .ToListAsync();
+            } else
+            {
+                query = query.ToLower();
 
-            query = query.ToLower();
+                jobs = await _context.Jobs.Where(j => j.JobTitle.ToLower().Contains(query)
+                                                   || j.Description.ToLower().Contains(query))
+                                          .Include(job => job.Company)
+                                          .Include(job => job.RequiredSkills)
+                                          .ToListAsync();
+            }
 
-            jobs = await _context.Jobs.Where(j => j.JobTitle.ToLower().Contains(query)
-                                                         || j.Description.ToLower().Contains(query))
-                                                .Include(job => job.Company)
-                                                .Include(job => job.RequiredSkills)
-                                                .ToListAsync();
             return Ok(new { jobs });
 
         }

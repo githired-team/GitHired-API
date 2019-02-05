@@ -37,8 +37,9 @@ namespace GitHiredApi.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Company>> GetCompany(int id)
         {
-            var company = await _context.Companies.FindAsync(id);
-
+            Company company = await _context.Companies.Where(c => c.ID == id)
+                                                      .Include(c => c.Jobs)
+                                                      .FirstOrDefaultAsync();
             if (company == null)
             {
                 return NotFound();
