@@ -110,6 +110,23 @@ namespace GitHiredApi.Migrations
                     b.HasIndex("JobID");
 
                     b.ToTable("RequiredSkills");
+
+                    b.HasData(
+                        new
+                        {
+                            Skill = 2,
+                            JobID = 1
+                        },
+                        new
+                        {
+                            Skill = 4,
+                            JobID = 2
+                        },
+                        new
+                        {
+                            Skill = 1,
+                            JobID = 2
+                        });
                 });
 
             modelBuilder.Entity("GitHiredApi.Models.Job", b =>

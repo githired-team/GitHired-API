@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using GitHiredApi.Data;
 using GitHiredApi.Models;
 using Microsoft.AspNetCore.Mvc;
-
- //using GitHiredApi.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace GitHiredApi.Controllers
 {
@@ -13,31 +13,69 @@ namespace GitHiredApi.Controllers
     [ApiController]
     public class GetJobsController : ControllerBase
     {
-        //private GitHiredApiDbContext _context;
+        private GitHiredApiDbContext _context;
 
-        //public GetJobsController(GitHiredApiDbContext context)
+        public GetJobsController(GitHiredApiDbContext context)
+        {
+            _context = context;
+        }
+
+        //[HttpGet]
+        //public ActionResult<IEnumerable<JobPosting>> Get()
         //{
-        //    _context = context;
+        //    Job sampleJob = new Job();
+        //    sampleJob.ID = 100;
+        //    sampleJob.JobTitle = "Software Dev";
+        //    sampleJob.CompanyID = 100;
+        //    sampleJob.Description = "Literally ur dream jopb plus free puppies every day";
+        //    sampleJob.Location = "Antarctica";
+        //    sampleJob.WageRange = "$0 to $1 yearly salary, DOE";
+
+        //    string[] sampleSkills = new string[] { "C#", ".NET Core", "Building APIs" };
+
+        //    JobPosting samplePosting = new JobPosting(sampleJob, sampleSkills);
+
+        //    JobsResponse sampleResponse = new JobsResponse(new JobPosting[] { samplePosting });
+
+        //    return Ok(sampleResponse);
         //}
 
         [HttpGet]
-        public ActionResult<IEnumerable<JobPosting>> Sample()
+        public async Task<ActionResult<IEnumerable<JobPosting>>> Get()
         {
-            Job sampleJob = new Job();
-            sampleJob.ID = 100;
-            sampleJob.JobTitle = "Software Dev";
-            sampleJob.CompanyID = 100;
-            sampleJob.Description = "Literally ur dream jopb plus free puppies every day";
-            sampleJob.Location = "Antarctica";
-            sampleJob.WageRange = "$0 to $1 yearly salary, DOE";
+            List<Job> allJobs = await _context.Jobs.Include(job => job.Company)
+                                                   .Include(job => job.RequiredSkills)
+                                                   .ToListAsync();
 
-            string[] sampleSkills = new string[] { "C#", ".NET Core", "Building APIs" };
+            if (allJobs == null)
+            {
+                return new List<JobPosting>();
+            }
 
-            JobPosting samplePosting = new JobPosting(sampleJob, sampleSkills);
+            List<JobPosting> allPostings = new List<JobPosting>();
 
-            JobsResponse sampleResponse = new JobsResponse(new JobPosting[] { samplePosting });
-            
-            return Ok(sampleResponse);
+            foreach(Job job in allJobs)
+            {
+                
+                string[] skills = new string[] { };
+
+                if (job.RequiredSkills != null)
+                {
+                    skills = job.RequiredSkills.Select(rs => rs.Skill.ToString()).ToArray();
+
+                }
+
+                string company = "";
+
+                if (job.Company != null)
+                {
+                    company = job.Company.Name;
+                }
+
+                allPostings.Add(new JobPosting(job, skills, company));
+            }
+
+            return allPostings;
         }
 
         
