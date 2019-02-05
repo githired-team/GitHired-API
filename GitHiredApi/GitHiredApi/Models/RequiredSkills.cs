@@ -15,7 +15,10 @@ namespace GitHiredApi.Models
 
         //nav
         public Job Job { get; set; }
+
     }
+
+
     public enum Skills
     {
         [Display(Name = "c#")]
@@ -26,6 +29,5 @@ namespace GitHiredApi.Models
         Javascript,
         [Display(Name = "Unit Testing")]
         UnitTesting
-
     }
 }
