@@ -13,7 +13,7 @@ namespace GitHiredApi.Data
         {
 
         }
-
+      
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
