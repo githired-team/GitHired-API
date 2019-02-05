@@ -5,8 +5,7 @@ using System.Threading.Tasks;
 using GitHiredApi.Data;
 using GitHiredApi.Models;
 using Microsoft.AspNetCore.Mvc;
-
-
+using Microsoft.EntityFrameworkCore;
 
 namespace GitHiredApi.Controllers
 {
@@ -42,11 +41,41 @@ namespace GitHiredApi.Controllers
         //}
 
         [HttpGet]
-        public async ActionResult<IEnumerable<JobPosting>> Get()
+        public async Task<ActionResult<IEnumerable<JobPosting>>> Get()
         {
-            List<Job> = 
-            
-            return 
+            List<Job> allJobs = await _context.Jobs.Include(job => job.Company)
+                                                   .Include(job => job.RequiredSkills)
+                                                   .ToListAsync();
+
+            if (allJobs == null)
+            {
+                return new List<JobPosting>();
+            }
+
+            List<JobPosting> allPostings = new List<JobPosting>();
+
+            foreach(Job job in allJobs)
+            {
+                
+                string[] skills = new string[] { };
+
+                if (job.RequiredSkills != null)
+                {
+                    skills = job.RequiredSkills.Select(rs => rs.Skill.ToString()).ToArray();
+
+                }
+
+                string company = "";
+
+                if (job.Company != null)
+                {
+                    company = job.Company.Name;
+                }
+
+                allPostings.Add(new JobPosting(job, skills, company));
+            }
+
+            return allPostings;
         }
 
         

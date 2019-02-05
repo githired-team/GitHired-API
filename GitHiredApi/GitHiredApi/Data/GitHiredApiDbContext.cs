@@ -27,7 +27,6 @@ namespace GitHiredApi.Data
                   Website="www.Redfin.com",
                   Industry="a",
                   Headline="b"
-
                 }
               
                 );
@@ -64,9 +63,25 @@ namespace GitHiredApi.Data
                      Location = "Bellevue,WA",
                      WageRange = "5k monthly"
 
-                 }
+                 });
 
-           );
+            modelBuilder.Entity<RequiredSkills>().HasData(
+                new RequiredSkills
+                {
+                    Skill = Skills.Java,
+                    JobID = 1
+                },
+                new RequiredSkills
+                {
+                    Skill = Skills.UnitTesting,
+                    JobID = 2
+                },
+                new RequiredSkills
+                {
+                    Skill = Skills.cPlusPlus,
+                    JobID = 2
+                }
+                );
         }
 
     
