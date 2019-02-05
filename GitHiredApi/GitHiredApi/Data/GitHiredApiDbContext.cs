@@ -48,11 +48,6 @@ namespace GitHiredApi.Data
                       Headline = "c"
 
                   }
-
-
-                  Industry="a",
-                  Headline="b"
-                }
               
 
                 );

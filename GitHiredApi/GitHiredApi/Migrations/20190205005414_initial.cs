@@ -94,6 +94,21 @@ namespace GitHiredApi.Migrations
                 columns: new[] { "ID", "CompanyID", "Description", "JobTitle", "Location", "WageRange" },
                 values: new object[] { 3, 2, "Solid understanding of Object Oriented Programming,Outstanding verbal and written communication skills", "Front-end Developer", "Bellevue,WA", "5k monthly" });
 
+            migrationBuilder.InsertData(
+                table: "RequiredSkills",
+                columns: new[] { "Skill", "JobID" },
+                values: new object[] { 2, 1 });
+
+            migrationBuilder.InsertData(
+                table: "RequiredSkills",
+                columns: new[] { "Skill", "JobID" },
+                values: new object[] { 4, 2 });
+
+            migrationBuilder.InsertData(
+                table: "RequiredSkills",
+                columns: new[] { "Skill", "JobID" },
+                values: new object[] { 1, 2 });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Jobs_CompanyID",
                 table: "Jobs",
