@@ -13,11 +13,10 @@ namespace GitHiredApi.Data
         {
             
         }
-      
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<RequiredSkills>().HasKey(ce => new { ce.Skill, ce.JobID });
+            modelBuilder.Entity<RequiredSkill>().HasKey(ce => new { ce.SkillID, ce.JobID });
             modelBuilder.Entity<Company>().HasData(
                 
                 
@@ -46,10 +45,7 @@ namespace GitHiredApi.Data
                       Industry = "e-commerce Market",
                       Headline = "c"
 
-                  }
-              
-
-                );
+                  });
 
 
             modelBuilder.Entity<Job>().HasData(
@@ -58,10 +54,11 @@ namespace GitHiredApi.Data
                 {
                     ID = 1,
                     CompanyID = 1,
-                    JobTitle = "Java Developer",
-                    Description = " Solid understanding of Object Oriented Programming",
+                    JobTitle = "C# Back-End Developer",
+                    Description = " Solid understanding of Object Oriented Programming and some other stuff, experience with SQL",
                     Location = "Kirkland,WA",
-                    WageRange = "8k monthly"
+                    WageRange = "8k monthly",
+                    ApplicationUrl = "www.TechCompanyThatShouldTotallyHireRick.com/BestEverJobs/Apply"
 
                 },
                 new Job
@@ -69,43 +66,98 @@ namespace GitHiredApi.Data
                     ID = 2,
                     CompanyID = 1,
                     JobTitle = "Front-end Developer",
-                    Description = "Solid understanding of Object Oriented Programming,Outstanding verbal and written communication skills",
+                    Description = "1+ years of experience with React.js. Gotta be a cool cat and like other cool cats, and CSS.",
                     Location = "Bellevue,WA",
-                    WageRange = "5k monthly"
+                    WageRange = "5k monthly",
+                    ApplicationUrl = "www.RickSuxNeverHireHim.com/IfIWorkedOnFrontEnd"
 
                 },
                  new Job
                  {
                      ID = 3,
                      CompanyID = 2,
-                     JobTitle = "Front-end Developer",
-                     Description = "Solid understanding of Object Oriented Programming,Outstanding verbal and written communication skills",
-                     Location = "Bellevue,WA",
-                     WageRange = "5k monthly"
+                     JobTitle = "GIGASENIOR MECHA-DEVELOPER",
+                     Description = "Solid understanding of Object Oriented Programming principles, 4000+ years of experience with latest frameworks. GIANT ROBOT BODY a must. Lazer eyes a plus!!",
+                     Location = "Secret Lunar Base, WV",
+                     WageRange = "5-6 Xolthar-Class Power Crystals/Month, DOE",
+                     ApplicationUrl = "www.WayCoolerThanYourTechCompany.com/N00bCrushers/apply"
 
                  });
 
-            modelBuilder.Entity<RequiredSkills>().HasData(
-                new RequiredSkills
+            modelBuilder.Entity<Skill>().HasData(
+                new Skill
                 {
-                    Skill = Skills.Java,
-                    JobID = 1
+                    ID = 1,
+                    SkillName = "Java"
                 },
-                new RequiredSkills
+                new Skill
                 {
-                    Skill = Skills.UnitTesting,
+                    ID = 2,
+                    SkillName = "C#"
+                },
+                new Skill
+                {
+                    ID = 3,
+                    SkillName = "C++"
+                },
+                new Skill
+                {
+                    ID = 4,
+                    SkillName = "React.js"
+                },
+                new Skill
+                {
+                    ID = 5,
+                    SkillName = "JavaScript"
+                },
+                new Skill
+                {
+                    ID = 6,
+                    SkillName = "SQL"
+                },
+                new Skill
+                {
+                    ID = 7,
+                    SkillName = "CSS"
+                },
+                new Skill
+                {
+                    ID = 8,
+                    SkillName = "Project Management"
+                });
+
+            modelBuilder.Entity<RequiredSkill>().HasData(
+                new RequiredSkill
+                {
+                    SkillID = 4,
+                    JobID = 3
+                },
+                new RequiredSkill
+                {
+                    SkillID = 7,
                     JobID = 2
                 },
-                new RequiredSkills
+                new RequiredSkill
                 {
-                    Skill = Skills.cPlusPlus,
+                    SkillID = 2,
+                    JobID = 1
+                },
+                new RequiredSkill
+                {
+                    SkillID = 6,
+                    JobID= 1
+                }
+                new RequiredSkill
+                {
+                    SkillID = 6,
                     JobID = 2
                 });
         }
-        
+      
         public DbSet<Company> Companies { get; set; }
         public DbSet<Job> Jobs { get; set; }
-        public DbSet<RequiredSkills> RequiredSkills { get; set; }
+        public DbSet<RequiredSkill> RequiredSkills { get; set; }
+        public DbSet<Skill> Skills { get; set; }
     
     }
 }
