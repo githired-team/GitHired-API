@@ -102,8 +102,7 @@ namespace GitHiredApi.Data
                     JobID = 2
                 });
         }
-
-    
+        
         public DbSet<Company> Companies { get; set; }
         public DbSet<Job> Jobs { get; set; }
         public DbSet<RequiredSkills> RequiredSkills { get; set; }
