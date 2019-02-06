@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using GitHiredApi.Data;
 using GitHiredApi.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Internal;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace GitHiredApi.Controllers
 {
@@ -14,7 +14,7 @@ namespace GitHiredApi.Controllers
     [ApiController]
     public class GetCompanyInfoController : ControllerBase
     {
-        private GitHiredApiDbContext  _context;
+        private GitHiredApiDbContext _context;
 
         public GetCompanyInfoController(GitHiredApiDbContext context)
         {
@@ -35,17 +35,20 @@ namespace GitHiredApi.Controllers
 
         // GET: api/Todo/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Company>> GetCompany(int id)
+        public async Task <ActionResult<Company>> GetCompany(int id)
         {
+
+
             Company company = await _context.Companies.Where(c => c.ID == id)
                                                       .Include(c => c.Jobs)
                                                       .FirstOrDefaultAsync();
             if (company == null)
+
             {
                 return NotFound();
             }
 
-            return company;
+            return  company ;
         }
 
 

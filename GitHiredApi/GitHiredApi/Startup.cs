@@ -21,7 +21,6 @@ namespace GitHiredApi
     public class Startup
     {
 
-
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -44,6 +43,7 @@ namespace GitHiredApi
                     }, ArrayPool<char>.Shared));
                 })
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
 
             services.AddDbContext<GitHiredApiDbContext>( options => 
                   options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));

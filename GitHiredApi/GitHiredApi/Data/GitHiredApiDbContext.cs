@@ -146,9 +146,14 @@ namespace GitHiredApi.Data
                 {
                     SkillID = 6,
                     JobID= 1
+                }
+                new RequiredSkill
+                {
+                    SkillID = 6,
+                    JobID = 2
                 });
         }
-    
+      
         public DbSet<Company> Companies { get; set; }
         public DbSet<Job> Jobs { get; set; }
         public DbSet<RequiredSkill> RequiredSkills { get; set; }
