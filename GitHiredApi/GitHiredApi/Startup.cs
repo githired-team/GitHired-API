@@ -43,7 +43,7 @@ namespace GitHiredApi
 
             services.AddDbContext<GitHiredApiDbContext>
                 ( options => 
-                  options.UseSqlServer(Configuration["ConnectionStrings:ProductionConnection"]));
+                  options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
 
             // Prevents infinite reference loops when we serialize objects linked to one another with navigation properties.
             //   solution found at: https://stackoverflow.com/questions/19467673/entity-framework-self-referencing-loop-detected/30203455
