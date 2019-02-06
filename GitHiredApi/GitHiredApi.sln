@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.168
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GitHiredApi", "GitHiredApi\GitHiredApi.csproj", "{D9ABDA4F-A622-49CC-B12D-551A5F289BA7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APITDD", "APITDD\APITDD.csproj", "{33C90654-886A-44EC-AF60-EBB15B3F9445}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D9ABDA4F-A622-49CC-B12D-551A5F289BA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9ABDA4F-A622-49CC-B12D-551A5F289BA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9ABDA4F-A622-49CC-B12D-551A5F289BA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9ABDA4F-A622-49CC-B12D-551A5F289BA7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{33C90654-886A-44EC-AF60-EBB15B3F9445}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33C90654-886A-44EC-AF60-EBB15B3F9445}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33C90654-886A-44EC-AF60-EBB15B3F9445}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33C90654-886A-44EC-AF60-EBB15B3F9445}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {18E8F98D-8244-41FB-8FC9-05709929582C}
+	EndGlobalSection
+EndGlobal
