@@ -14,13 +14,12 @@ namespace GitHiredApi.Controllers
     [ApiController]
     public class GetCompanyInfoController : ControllerBase
     {
-        private GitHiredApiDbContext  _context;
+        private GitHiredApiDbContext _context;
 
         public GetCompanyInfoController(GitHiredApiDbContext context)
         {
             _context = context;
         }
-
 
 
 
@@ -36,7 +35,7 @@ namespace GitHiredApi.Controllers
 
         // GET: api/Todo/5
         [HttpGet("{id}")]
-        public async Task <ActionResult> GetCompany(int id)
+        public async Task <ActionResult<Company>> GetCompany(int id)
         {
 
 
@@ -49,7 +48,7 @@ namespace GitHiredApi.Controllers
                 return NotFound();
             }
 
-            return Ok(new { company });
+            return  company ;
         }
 
 
