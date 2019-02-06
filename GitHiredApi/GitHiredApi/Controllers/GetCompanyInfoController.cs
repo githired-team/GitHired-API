@@ -14,9 +14,9 @@ namespace GitHiredApi.Controllers
     [ApiController]
     public class GetCompanyInfoController : ControllerBase
     {
-        private GitHiredApiDbContext  _context;
+        private GitAJabApiDbContext  _context;
 
-        public GetCompanyInfoController(GitHiredApiDbContext context)
+        public GetCompanyInfoController(GitAJabApiDbContext context)
         {
             _context = context;
         }

@@ -6,15 +6,16 @@ using System.Threading.Tasks;
 
 namespace GitHiredApi.Models
 {
-    public class RequiredSkills
+    public class RequiredSkill
     {
+        
 
-        public Skills Skill { get; set; }
-
+        public int SkillID { get; set; }
         public int JobID { get; set; }
 
-        //nav
+        // Navigation Properties
         public Job Job { get; set; }
+        public Skill Skill { get; set; }
 
     }
 

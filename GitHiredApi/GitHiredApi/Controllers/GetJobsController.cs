@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using GitHiredApi.Data;
+using GitHiredApi.Helpers;
 using GitHiredApi.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json;
+
 
 namespace GitHiredApi.Controllers
 {
@@ -14,9 +14,9 @@ namespace GitHiredApi.Controllers
     [ApiController]
     public class GetJobsController : ControllerBase
     {
-        private GitHiredApiDbContext _context;
+        private GitAJabApiDbContext _context;
 
-        public GetJobsController(GitHiredApiDbContext context)
+        public GetJobsController(GitAJabApiDbContext context)
         {
             _context = context;
         }
@@ -28,26 +28,27 @@ namespace GitHiredApi.Controllers
         [HttpGet]
         public async Task<ActionResult> Search(string query)
         {
-            List<Job> jobs;
+            List<JobPosting> jobs;
 
             if (query == null || query == "")
             {
-                jobs = await _context.Jobs.Include(job => job.Company)
-                                          .Include(job => job.RequiredSkills)
+                jobs = await _context.Jobs.Include("Company")
+                                          .Include("RequiredSkills.Skill")
+                                          .Select(j => new JobPosting(j))
                                           .ToListAsync();
             } else
             {
                 query = query.ToLower();
 
                 jobs = await _context.Jobs.Where(j => j.JobTitle.ToLower().Contains(query)
-                                                   || j.Description.ToLower().Contains(query))
-                                          .Include(job => job.Company)
-                                          .Include(job => job.RequiredSkills)
-                                          .ToListAsync();
+                                                    || j.Description.ToLower().Contains(query))
+                                           .Include("Company")
+                                           .Include("RequiredSkills.Skill")
+                                           .Select(j => new JobPosting(j))
+                                           .ToListAsync();
             }
 
             return Ok(new { jobs });
-
         }
 
        

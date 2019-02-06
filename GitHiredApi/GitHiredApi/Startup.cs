@@ -34,6 +34,9 @@ namespace GitHiredApi
         {
             services.AddMvc(options =>
                 {
+                // Prevents infinite reference loops when we serialize objects linked to one another with navigation properties.
+                //   solution found at: 
+                // https://stackoverflow.com/questions/19467673/entity-framework-self-referencing-loop-detected/30203455
                     options.OutputFormatters.Clear();
                     options.OutputFormatters.Add(new JsonOutputFormatter(new JsonSerializerSettings()
                     {
@@ -42,13 +45,10 @@ namespace GitHiredApi
                 })
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
-            services.AddDbContext<GitHiredApiDbContext>
-                ( options => 
-                  options.UseSqlServer(Configuration["ConnectionStrings:ProductionConnection"]));
+            services.AddDbContext<GitAJabApiDbContext>( options => 
+                  options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
 
-            // Prevents infinite reference loops when we serialize objects linked to one another with navigation properties.
-            //   solution found at: https://stackoverflow.com/questions/19467673/entity-framework-self-referencing-loop-detected/30203455
-            services.AddMvc();
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
