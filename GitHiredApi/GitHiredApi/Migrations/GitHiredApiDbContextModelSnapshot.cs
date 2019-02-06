@@ -152,6 +152,11 @@ namespace GitHiredApi.Migrations
                         {
                             SkillID = 6,
                             JobID = 1
+                        },
+                        new
+                        {
+                            SkillID = 6,
+                            JobID = 2
                         });
                 });
 

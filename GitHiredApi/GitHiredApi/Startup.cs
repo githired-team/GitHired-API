@@ -51,8 +51,7 @@ namespace GitHiredApi
                   options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
 
 
-            services.AddDbContext<GitHiredApiDbContext>(options =>
-            options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
+            
 
             services.AddSwaggerDocument();
 

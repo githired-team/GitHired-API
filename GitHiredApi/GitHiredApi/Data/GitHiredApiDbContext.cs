@@ -146,7 +146,7 @@ namespace GitHiredApi.Data
                 {
                     SkillID = 6,
                     JobID= 1
-                }
+                },
                 new RequiredSkill
                 {
                     SkillID = 6,

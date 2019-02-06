@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GitHiredApi.Migrations
 {
     [DbContext(typeof(GitHiredApiDbContext))]
-    [Migration("20190206194855_initial")]
+    [Migration("20190206210114_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -154,6 +154,11 @@ namespace GitHiredApi.Migrations
                         {
                             SkillID = 6,
                             JobID = 1
+                        },
+                        new
+                        {
+                            SkillID = 6,
+                            JobID = 2
                         });
                 });
 
