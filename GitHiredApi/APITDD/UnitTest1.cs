@@ -14,9 +14,10 @@ namespace APITDD
     {
 
         [Fact]
-        public async void CanCreateHotel()
+        public async void CanGetCompany()
         {
-            DbContextOptions<GitHiredApiDbContext> options = new DbContextOptionsBuilder<GitHiredApiDbContext>().UseInMemoryDatabase("GetCompany").Options;
+            DbContextOptions<GitHiredApiDbContext> options = new DbContextOptionsBuilder<GitHiredApiDbContext>()
+                                                                    .UseInMemoryDatabase(databaseName: "CanGetCompany").Options;
 
             using (GitHiredApiDbContext context = new GitHiredApiDbContext(options))
             {
@@ -26,15 +27,16 @@ namespace APITDD
                 c1.Name = "TestCo";
                 c1.Website = "www.Testco.com";
                 c1.Industry = "Testing";
-                c1.Headline="tt";
+                c1.Headline = "tt";
+
 
                 // Act
-                GetCompanyInfoController _controller  = new GetCompanyInfoController(context);
-               var res= await _controller.GetCompany(1);
-                // var result = context.Companies.Where(h => h.ID == c1.ID);
+                context.Companies.Add(c1);
+                context.SaveChanges();
 
-                // Assert
-                Assert.True(res.Value.ID == 1);
+                var result = await context.Companies.FirstOrDefaultAsync();
+
+                Assert.True(result.ID == 1);
             }
         }
     }

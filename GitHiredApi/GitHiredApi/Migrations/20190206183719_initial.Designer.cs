@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GitHiredApi.Migrations
 {
     [DbContext(typeof(GitHiredApiDbContext))]
-    [Migration("20190205230426_initial")]
+    [Migration("20190206183719_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
