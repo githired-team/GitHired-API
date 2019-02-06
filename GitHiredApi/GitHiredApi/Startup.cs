@@ -45,7 +45,7 @@ namespace GitHiredApi
                 })
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
-            services.AddDbContext<GitAJabApiDbContext>( options => 
+            services.AddDbContext<GitHiredApiDbContext>( options => 
                   options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
 
             

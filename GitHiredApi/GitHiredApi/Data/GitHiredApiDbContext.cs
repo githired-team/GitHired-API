@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace GitHiredApi.Data
 {
-    public class GitAJabApiDbContext : DbContext
+    public class GitHiredApiDbContext : DbContext
     {
-        public GitAJabApiDbContext(DbContextOptions<GitAJabApiDbContext> options) : base(options)
+        public GitHiredApiDbContext(DbContextOptions<GitHiredApiDbContext> options) : base(options)
         {
             
         }

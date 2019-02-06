@@ -19,3 +19,5 @@ namespace GitHiredApi.Models
         public ICollection<Job> Jobs { get; set; }
     }
 }
+
+

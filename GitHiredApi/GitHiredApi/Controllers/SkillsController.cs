@@ -14,9 +14,9 @@ namespace GitHiredApi.Controllers
     [ApiController]
     public class SkillsController : ControllerBase
     {
-        private GitAJabApiDbContext _context;
+        private GitHiredApiDbContext _context;
 
-        public SkillsController(GitAJabApiDbContext context)
+        public SkillsController(GitHiredApiDbContext context)
         {
             _context = context;
         }

@@ -14,9 +14,9 @@ namespace GitHiredApi.Controllers
     [ApiController]
     public class GetJobsController : ControllerBase
     {
-        private GitAJabApiDbContext _context;
+        private GitHiredApiDbContext _context;
 
-        public GetJobsController(GitAJabApiDbContext context)
+        public GetJobsController(GitHiredApiDbContext context)
         {
             _context = context;
         }
@@ -48,7 +48,7 @@ namespace GitHiredApi.Controllers
                                            .ToListAsync();
             }
 
-            return Ok(new { jobs });
+            return Ok(new { jobs, query });
         }
 
        

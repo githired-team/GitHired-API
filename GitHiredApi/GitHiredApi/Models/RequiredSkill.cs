@@ -8,8 +8,6 @@ namespace GitHiredApi.Models
 {
     public class RequiredSkill
     {
-        
-
         public int SkillID { get; set; }
         public int JobID { get; set; }
 
