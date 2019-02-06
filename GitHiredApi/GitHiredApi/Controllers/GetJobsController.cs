@@ -41,7 +41,7 @@ namespace GitHiredApi.Controllers
                 query = query.ToLower();
 
                 jobs = await _context.Jobs.Where(j => j.JobTitle.ToLower().Contains(query)
-                                                    || j.Description.ToLower().Contains(query))
+                                                   || j.Description.ToLower().Contains(query))
                                            .Include("Company")
                                            .Include("RequiredSkills.Skill")
                                            .Select(j => new JobPosting(j))
