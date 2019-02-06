@@ -9,15 +9,15 @@ namespace GitHiredApi.Models
     {
         public int ID { get; set; }
         public int CompanyID { get; set; }
-        //jobtitle
         public string JobTitle { get; set; }
         public string Description { get; set; }
         public string Location { get; set; }
         public string WageRange { get; set; }
+        public string ApplicationUrl { get; set; }
 
         //navi
         public Company Company { get; set; }
-        public ICollection<RequiredSkills> RequiredSkills { get; set; }
+        public ICollection<RequiredSkill> RequiredSkills { get; set; }
 
     }
 }

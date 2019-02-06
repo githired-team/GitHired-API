@@ -3,14 +3,16 @@ using GitHiredApi.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace GitHiredApi.Migrations
 {
     [DbContext(typeof(GitHiredApiDbContext))]
-    partial class GitHiredApiDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190206183719_initial")]
+    partial class initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -69,8 +71,6 @@ namespace GitHiredApi.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("ApplicationUrl");
-
                     b.Property<int>("CompanyID");
 
                     b.Property<string>("Description");
@@ -91,19 +91,17 @@ namespace GitHiredApi.Migrations
                         new
                         {
                             ID = 1,
-                            ApplicationUrl = "www.TechCompanyThatShouldTotallyHireRick.com/BestEverJobs/Apply",
                             CompanyID = 1,
-                            Description = " Solid understanding of Object Oriented Programming and some other stuff, experience with SQL",
-                            JobTitle = "C# Back-End Developer",
+                            Description = " Solid understanding of Object Oriented Programming",
+                            JobTitle = "Java Developer",
                             Location = "Kirkland,WA",
                             WageRange = "8k monthly"
                         },
                         new
                         {
                             ID = 2,
-                            ApplicationUrl = "www.RickSuxNeverHireHim.com/IfIWorkedOnFrontEnd",
                             CompanyID = 1,
-                            Description = "1+ years of experience with React.js. Gotta be a cool cat and like other cool cats, and CSS.",
+                            Description = "Solid understanding of Object Oriented Programming,Outstanding verbal and written communication skills",
                             JobTitle = "Front-end Developer",
                             Location = "Bellevue,WA",
                             WageRange = "5k monthly"
@@ -111,22 +109,21 @@ namespace GitHiredApi.Migrations
                         new
                         {
                             ID = 3,
-                            ApplicationUrl = "www.WayCoolerThanYourTechCompany.com/N00bCrushers/apply",
                             CompanyID = 2,
-                            Description = "Solid understanding of Object Oriented Programming principles, 4000+ years of experience with latest frameworks. GIANT ROBOT BODY a must. Lazer eyes a plus!!",
-                            JobTitle = "GIGASENIOR MECHA-DEVELOPER",
-                            Location = "Secret Lunar Base, WV",
-                            WageRange = "5-6 Xolthar-Class Power Crystals/Month, DOE"
+                            Description = "Solid understanding of Object Oriented Programming,Outstanding verbal and written communication skills",
+                            JobTitle = "Front-end Developer",
+                            Location = "Bellevue,WA",
+                            WageRange = "5k monthly"
                         });
                 });
 
-            modelBuilder.Entity("GitHiredApi.Models.RequiredSkill", b =>
+            modelBuilder.Entity("GitHiredApi.Models.RequiredSkills", b =>
                 {
-                    b.Property<int>("SkillID");
+                    b.Property<int>("Skill");
 
                     b.Property<int>("JobID");
 
-                    b.HasKey("SkillID", "JobID");
+                    b.HasKey("Skill", "JobID");
 
                     b.HasIndex("JobID");
 
@@ -135,78 +132,18 @@ namespace GitHiredApi.Migrations
                     b.HasData(
                         new
                         {
-                            SkillID = 4,
-                            JobID = 3
+                            Skill = 2,
+                            JobID = 1
                         },
                         new
                         {
-                            SkillID = 7,
+                            Skill = 4,
                             JobID = 2
                         },
                         new
                         {
-                            SkillID = 2,
-                            JobID = 1
-                        },
-                        new
-                        {
-                            SkillID = 6,
-                            JobID = 1
-                        });
-                });
-
-            modelBuilder.Entity("GitHiredApi.Models.Skill", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("SkillName");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("Skills");
-
-                    b.HasData(
-                        new
-                        {
-                            ID = 1,
-                            SkillName = "Java"
-                        },
-                        new
-                        {
-                            ID = 2,
-                            SkillName = "C#"
-                        },
-                        new
-                        {
-                            ID = 3,
-                            SkillName = "C++"
-                        },
-                        new
-                        {
-                            ID = 4,
-                            SkillName = "React.js"
-                        },
-                        new
-                        {
-                            ID = 5,
-                            SkillName = "JavaScript"
-                        },
-                        new
-                        {
-                            ID = 6,
-                            SkillName = "SQL"
-                        },
-                        new
-                        {
-                            ID = 7,
-                            SkillName = "CSS"
-                        },
-                        new
-                        {
-                            ID = 8,
-                            SkillName = "Project Management"
+                            Skill = 1,
+                            JobID = 2
                         });
                 });
 
@@ -218,16 +155,11 @@ namespace GitHiredApi.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("GitHiredApi.Models.RequiredSkill", b =>
+            modelBuilder.Entity("GitHiredApi.Models.RequiredSkills", b =>
                 {
                     b.HasOne("GitHiredApi.Models.Job", "Job")
                         .WithMany("RequiredSkills")
                         .HasForeignKey("JobID")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("GitHiredApi.Models.Skill", "Skill")
-                        .WithMany("RequiredSkills")
-                        .HasForeignKey("SkillID")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

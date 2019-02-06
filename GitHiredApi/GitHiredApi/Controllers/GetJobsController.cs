@@ -1,11 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using GitHiredApi.Data;
+using GitHiredApi.Helpers;
 using GitHiredApi.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+
 
 namespace GitHiredApi.Controllers
 {
@@ -20,48 +21,38 @@ namespace GitHiredApi.Controllers
             _context = context;
         }
 
+        // Takes in a search query and returns an object containing a list of all jobs whose title or description
+        //   contains the given query string.
+        //  If no query string is provided, or the query string is empty, data for all jobs in our database 
+        //   is returned. 
         [HttpGet]
-        public async Task<ActionResult<JobsResponse>> Get()
+        public async Task<ActionResult> Search(string query)
         {
-            List<Job> allJobs = await _context.Jobs.Include(job => job.Company)
-                                                   .Include(job => job.RequiredSkills)
-                                                   .ToListAsync();
+            List<JobPosting> jobs;
 
-            if (allJobs == null)
+            if (query == null || query == "")
             {
-                return new JobsResponse(new JobPosting[] { });
+                jobs = await _context.Jobs.Include("Company")
+                                          .Include("RequiredSkills.Skill")
+                                          .Select(j => new JobPosting(j))
+                                          .ToListAsync();
+            } else
+            {
+                query = query.ToLower();
+
+                jobs = await _context.Jobs.Where(j => j.JobTitle.ToLower().Contains(query)
+                                                   || j.Description.ToLower().Contains(query))
+                                           .Include("Company")
+                                           .Include("RequiredSkills.Skill")
+                                           .Select(j => new JobPosting(j))
+                                           .ToListAsync();
             }
 
-            List<JobPosting> allPostings = new List<JobPosting>();
-
-            foreach(Job job in allJobs)
-            {
-                
-                string[] skills = new string[] { };
-
-                if (job.RequiredSkills != null)
-                {
-                    skills = job.RequiredSkills.Select(rs => rs.Skill.ToString()).ToArray();
-
-                }
-
-                string company = "";
-
-                if (job.Company != null)
-                {
-                    company = job.Company.Name;
-                }
-
-                allPostings.Add(new JobPosting(job, skills, company));
-            }
-
-            
-            return new JobsResponse(allPostings.ToArray());
+            return Ok(new { jobs, query });
         }
 
-
-
-        
-
+       
     }
 }
+
+
