@@ -24,11 +24,11 @@ namespace GitHiredApi.Controllers
 
 
         [HttpGet]
-        public async Task<ActionResult<List<Company>>> GetCompanies()
+        public async Task<ActionResult> GetCompanies()
         {
             List<Company> companies = await _context.Companies.Include(r => r.Jobs)
                                                               .ToListAsync();
-            return  companies ;
+            return  Ok(companies);
 
         }
         
