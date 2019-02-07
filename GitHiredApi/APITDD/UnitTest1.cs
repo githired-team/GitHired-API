@@ -523,5 +523,246 @@ namespace APITDD
             Assert.True(j1.RequiredSkills.ToArray()[0].SkillID==4);
               }
 
+        /// <summary>
+        /// Getter-->RequiredSkill-->skillID
+        /// </summary>
+
+        [Fact]
+        public void canGetRequiredSkillSkillID()
+        {
+            RequiredSkill r1 = new RequiredSkill();
+           r1.SkillID = 1;
+            Assert.True(r1.SkillID == 1);
+        }
+        /// <summary>
+        /// Setter-->RequiredSkill-->skillID
+        /// </summary>
+        [Fact]
+        public void cansetRequiredSkillSkillID()
+        {
+            RequiredSkill r1 = new RequiredSkill();
+            r1.SkillID = 1;
+            r1.SkillID = 4;
+            Assert.True(r1.SkillID == 4);
+        }
+
+        /// <summary>
+        /// Getter-->RequiredSkill-->JobID
+        /// </summary>
+        [Fact]
+        public void canGetRequiredSkillJobID()
+        {
+            RequiredSkill r1 = new RequiredSkill();
+            r1.JobID = 1;
+            Assert.True(r1.JobID == 1);
+        }
+
+        /// <summary>
+        /// Setter-->RequiredSkill-->JobID
+        /// </summary>
+        [Fact]
+        public void canSetRequiredSkillJobID()
+        {
+            RequiredSkill r1 = new RequiredSkill();
+            r1.JobID = 1;
+            r1.JobID = 11;
+            Assert.True(r1.JobID == 11);
+        }
+
+
+
+
+        /// <summary>
+        /// Getter-->RequiredSkill-->Job
+        /// </summary>
+        [Fact]
+        public void canGetRequiredSkillJob()
+        {
+            RequiredSkill r1 = new RequiredSkill();
+            Job job = new Job();
+            job.JobTitle = "QA tester";
+            r1.Job = job;
+            Assert.True(job.JobTitle == "QA tester");
+        }
+
+        /// <summary>
+        /// Setter-->RequiredSkill-->Job
+        /// </summary>
+        [Fact]
+        public void canSetRequiredSkillJob()
+        {
+            RequiredSkill r1 = new RequiredSkill();
+            Job job = new Job();
+            job.JobTitle = "QA tester";
+            r1.Job = job;
+            r1.Job.JobTitle = "Jr Dev";
+
+            Assert.True(job.JobTitle == "Jr Dev");
+        }
+
+
+        /// <summary>
+        /// Getter-->RequiredSkill-->skill
+        /// </summary>
+
+        [Fact]
+        public void canGetRequiredSkill()
+        {
+            RequiredSkill r1 = new RequiredSkill();
+            Skill s = new Skill();
+            s.SkillName = "Java";
+            r1.Skill =s;
+            Assert.True(r1.Skill.SkillName == "Java");
+        }
+        /// <summary>
+        /// Setter-->RequiredSkill-->skill
+        /// </summary>
+        [Fact]
+        public void canSetRequiredSkill()
+        {
+            RequiredSkill r1 = new RequiredSkill();
+            Skill s = new Skill();
+            s.SkillName = "Java";
+            r1.Skill = s;
+            r1.Skill.SkillName = "c#";
+            Assert.True(r1.Skill.SkillName == "c#");
+        }
+
+
+
+        /// <summary>
+        /// Getter-->Model-->skill-->ID
+        /// </summary>
+        [Fact]
+        public void CangetSkillID()
+        {
+            Skill s = new Skill();
+            s.ID = 1;
+            Assert.True(s.ID == 1);
+        }
+
+        /// <summary>
+        /// Setter-->Model-->skill-->ID
+        /// </summary>
+        [Fact]
+        public void CanSetSkillID()
+        {
+            Skill s = new Skill();
+            s.ID = 1;
+            s.ID = 13;
+            Assert.True(s.ID == 13);
+        }
+
+        /// <summary>
+        /// Getter-->Model-->Skill-->SkillName
+        /// </summary>
+        [Fact]
+        public void CanGetSkillName()
+        {
+            Skill s = new Skill();
+            s.SkillName = "Java";
+            Assert.True(s.SkillName == "Java");
+        }
+
+
+        /// <summary>
+        /// Setter-->Model-->Skill-->SkillName
+        /// </summary>
+        [Fact]
+        public void CanSetSkillName()
+        {
+            Skill s = new Skill();
+            s.SkillName = "Java";
+            s.SkillName = ".Net";
+            Assert.True(s.SkillName == ".Net");
+        }
+
+
+        /// <summary>
+        ///Getter-->Model-->Skill-->RequredSkills
+        /// </summary>
+         [Fact]
+        public void SkillCanGetRequredSkill()
+        {
+            Skill s = new Skill();
+            List<RequiredSkill> list = new List<RequiredSkill>();
+            RequiredSkill r1 = new RequiredSkill();
+            r1.SkillID = 1;
+            RequiredSkill r2 = new RequiredSkill();
+            r2.SkillID = 2;
+            list.Add(r1);
+            list.Add(r2);
+            s.RequiredSkills = list;
+
+            Assert.True(s.RequiredSkills.Count == 2);
+        }
+
+        /// <summary>
+        /// Setter-->Model-->Skill-->RequredSkills
+        /// </summary>
+        [Fact]
+        public void SkillCanSetRequredSkill()
+        {
+            Skill s = new Skill();
+            List<RequiredSkill> list = new List<RequiredSkill>();
+            RequiredSkill r1 = new RequiredSkill();
+            r1.SkillID = 1;
+            RequiredSkill r2 = new RequiredSkill();
+            r2.SkillID = 2;
+            list.Add(r1);
+            list.Add(r2);
+            s.RequiredSkills = list;
+            s.RequiredSkills.Add(new RequiredSkill {
+            SkillID=3,}
+                );
+            Assert.True(s.RequiredSkills.Count == 3);
+        }
+
+        /// <summary>
+        /// Test-->Controller-->GetJobsController-->Search(string query)
+        /// </summary>
+        [Fact]
+        public async void canSearchQuery()
+        {
+            using (GitHiredApiDbContext context1 = new GitHiredApiDbContext(options))
+            {
+                //Arrange
+                Company co = new Company();
+                co.Name = "cocacola";
+                List<RequiredSkill> list1 = new List<RequiredSkill>();
+                Skill s1 = new Skill();
+                s1.SkillName = "Javatest";
+                Skill s2 = new Skill();
+                s2.SkillName = "C#test";
+                RequiredSkill rr1 = new RequiredSkill();
+                rr1.Skill = s1;
+                RequiredSkill rr2 = new RequiredSkill();
+                rr2.Skill= s2;
+                list1.Add(rr1);
+                list1.Add(rr2);
+                Job job1 = new Job();
+               
+               
+                context1.Companies.Add(co);
+                context1.SaveChanges();
+                context1.Jobs.Add(job1);
+                context1.SaveChanges();
+                context1.Skills.Add(s1);
+                context1.SaveChanges();
+                context1.Skills.Add(s2);
+                context1.SaveChanges();
+                context1.RequiredSkills.Add(rr1);
+                context1.SaveChanges();
+                context1.RequiredSkills.Add(rr2);
+                context1.SaveChanges();
+                             
+                var _controller = new GetJobsController(context1);
+                var result = await _controller.Search("cocacola") as OkObjectResult;
+                Assert.Equal(200, result.StatusCode);
+
+            }
+
+
+        }
     }
 }
