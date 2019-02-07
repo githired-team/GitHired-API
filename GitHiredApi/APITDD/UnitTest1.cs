@@ -14,8 +14,7 @@ namespace APITDD
     
     public class UnitTest1
     {
-        DbContextOptions<GitHiredApiDbContext> options = new DbContextOptionsBuilder<GitHiredApiDbContext>()
-                                                                     .UseInMemoryDatabase(databaseName: "CanGetCompany").Options;
+        
         //[Fact]
         //public async void CanGetCompany()
         //{
@@ -45,7 +44,8 @@ namespace APITDD
              [Fact]
         public async void CanGetCompaniesByID()
         {
-
+            DbContextOptions<GitHiredApiDbContext> options = new DbContextOptionsBuilder<GitHiredApiDbContext>()
+                                                                     .UseInMemoryDatabase(databaseName: "CanGetCompany").Options;
             using (GitHiredApiDbContext context = new GitHiredApiDbContext(options))
             {
                 // Arrange
@@ -76,8 +76,10 @@ namespace APITDD
         [Fact]
         public async void CanGetAllCompanies()
         {
+            DbContextOptions<GitHiredApiDbContext> options = new DbContextOptionsBuilder<GitHiredApiDbContext>()
+                                                                        .UseInMemoryDatabase(databaseName: "CanGetCompany").Options;
 
-            using (GitHiredApiDbContext context = new GitHiredApiDbContext(options))
+            using (GitHiredApiDbContext context1 = new GitHiredApiDbContext(options))
             {
                 // Arrange
                 Company c3 = new Company();
@@ -96,12 +98,12 @@ namespace APITDD
                 c4.Headline = "tt";
 
                 // Act
-                context.Companies.Add(c3);
-                context.SaveChanges();
-                context.Companies.Add(c4);
-                context.SaveChanges();
+                context1.Companies.Add(c3);
+                context1.SaveChanges();
+                context1.Companies.Add(c4);
+                context1.SaveChanges();
 
-                var _controller = new GetCompanyInfoController(context);
+                var _controller = new GetCompanyInfoController(context1);
 
             var result = await  _controller.GetCompanies() as OkObjectResult;
 
@@ -724,12 +726,16 @@ namespace APITDD
         [Fact]
         public async void canSearchQuery()
         {
-            using (GitHiredApiDbContext context1 = new GitHiredApiDbContext(options))
+            DbContextOptions<GitHiredApiDbContext> options = new DbContextOptionsBuilder<GitHiredApiDbContext>()
+                                                                        .UseInMemoryDatabase(databaseName: "Cangetjobs").Options;
+            using (GitHiredApiDbContext context3 = new GitHiredApiDbContext(options))
             {
                 //Arrange
                 Company co = new Company();
                 co.Name = "cocacola";
-                List<RequiredSkill> list1 = new List<RequiredSkill>();
+                Job job1 = new Job();
+                job1.ID = 1;
+                // List<RequiredSkill> list1 = new List<RequiredSkill>();
                 Skill s1 = new Skill();
                 s1.SkillName = "Javatest";
                 Skill s2 = new Skill();
@@ -738,31 +744,70 @@ namespace APITDD
                 rr1.Skill = s1;
                 RequiredSkill rr2 = new RequiredSkill();
                 rr2.Skill= s2;
-                list1.Add(rr1);
-                list1.Add(rr2);
-                Job job1 = new Job();
-               
-               
-                context1.Companies.Add(co);
-                context1.SaveChanges();
-                context1.Jobs.Add(job1);
-                context1.SaveChanges();
-                context1.Skills.Add(s1);
-                context1.SaveChanges();
-                context1.Skills.Add(s2);
-                context1.SaveChanges();
-                context1.RequiredSkills.Add(rr1);
-                context1.SaveChanges();
-                context1.RequiredSkills.Add(rr2);
-                context1.SaveChanges();
+               // list1.Add(rr1);
+               // list1.Add(rr2);
+               context3.Companies.Add(co);
+                context3.SaveChanges();
+                context3.Jobs.Add(job1);
+                context3.SaveChanges();
+                context3.Skills.Add(s1);
+                context3.SaveChanges();
+                context3.Skills.Add(s2);
+                context3.SaveChanges();
+                context3.RequiredSkills.Add(rr1);
+                context3.SaveChanges();
+                context3.RequiredSkills.Add(rr2);
+                context3.SaveChanges();
                              
-                var _controller = new GetJobsController(context1);
+                var _controller = new GetJobsController(context3);
                 var result = await _controller.Search("cocacola") as OkObjectResult;
                 Assert.Equal(200, result.StatusCode);
 
             }
+        }
 
+
+        //Test-->Controller-->SkillsController-->SkillsData()
+        [Fact]
+        public async  void cangetSkillsData()
+        {
+            DbContextOptions<GitHiredApiDbContext> options = new DbContextOptionsBuilder<GitHiredApiDbContext>()
+                                                                     .UseInMemoryDatabase(databaseName: "CanGetCompany").Options;
+            using (GitHiredApiDbContext context2 = new GitHiredApiDbContext(options))
+            {
+
+                //Ararnge
+                Job j1 = new Job();
+                j1.ID = 1;
+                j1.JobTitle = "Jr Dev";
+                Skill skill1 = new Skill();
+                skill1.ID = 1;
+                skill1.SkillName = "aspNetCore";
+                Skill skill2 = new Skill();
+                skill2.ID = 2;
+                skill2.SkillName = "c++";
+                RequiredSkill rs1 = new RequiredSkill();
+                rs1.Skill = skill1;
+                RequiredSkill rs2 = new RequiredSkill();
+                rs2.Skill = skill2;
+
+                context2.Jobs.Add(j1);
+                context2.SaveChanges();
+                context2.Skills.Add(skill1);
+                context2.SaveChanges();
+                context2.Skills.Add(skill2);
+                context2.SaveChanges();
+                context2.RequiredSkills.Add(rs1);
+                context2.SaveChanges();
+                context2.RequiredSkills.Add(rs2);
+                context2.SaveChanges();
+
+                var _controller = new SkillsController(context2);
+                var result = await _controller.SkillsData() as OkObjectResult;
+                Assert.Equal(200, result.StatusCode);
+            }
 
         }
+
     }
 }
