@@ -21,10 +21,15 @@ namespace GitHiredApi.Controllers
             _context = context;
         }
 
-        // Takes in a search query and returns an object containing a list of all jobs whose title or description
-        //   contains the given query string.
-        //  If no query string is provided, or the query string is empty, data for all jobs in our database 
-        //   is returned. 
+
+        /// <summary>
+        /// Takes in a search query and returns an object containing a list of all jobs whose title or description
+        ///contains the given query string.
+         /// If no query string is provided, or the query string is empty, data for all jobs in our database 
+         ///  is returned.
+        /// </summary>
+        /// <param name="query"></param>
+        /// <returns></returns>
         [HttpGet]
         public async Task<ActionResult> Search(string query)
         {
