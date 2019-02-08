@@ -30,5 +30,10 @@ namespace GitHiredApi.Controllers
 
             return Ok(new { skillCounts });
         }
+
+        
     }
 }
+
+
+

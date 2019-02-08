@@ -20,9 +20,7 @@ namespace GitHiredApi.Controllers
         {
             _context = context;
         }
-
-
-
+        
         [HttpGet]
         public async Task<ActionResult<List<Company>>> GetCompanies()
         {
@@ -37,13 +35,11 @@ namespace GitHiredApi.Controllers
         [HttpGet("{id}")]
         public async Task <ActionResult<Company>> GetCompany(int id)
         {
-
-
+            
             Company company = await _context.Companies.Where(c => c.ID == id)
                                                       .Include(c => c.Jobs)
                                                       .FirstOrDefaultAsync();
             if (company == null)
-
             {
                 return NotFound();
             }

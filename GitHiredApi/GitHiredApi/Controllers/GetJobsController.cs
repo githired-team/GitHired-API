@@ -26,7 +26,7 @@ namespace GitHiredApi.Controllers
         //  If no query string is provided, or the query string is empty, data for all jobs in our database 
         //   is returned. 
         [HttpGet]
-        public async Task<ActionResult> Search(string query)
+        public async Task<ActionResult<List<JobPosting>>> Search(string query)
         {
             List<JobPosting> jobs;
 
