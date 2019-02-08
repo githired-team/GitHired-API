@@ -14,34 +14,12 @@ namespace APITDD
     
     public class UnitTest1
     {
-        
-        //[Fact]
-        //public async void CanGetCompany()
-        //{
-        //  using (GitHiredApiDbContext context = new GitHiredApiDbContext(options))
-        //    {
-        //        // Arrange
-        //        Company c1 = new Company();
-        //        c1.ID = 1;
-        //        c1.Name = "TestCo";
-        //        c1.Website = "www.Testco.com";
-        //        c1.Industry = "Testing";
-        //        c1.Headline = "tt";
 
 
-        //        // Act
-        //        context.Company.Add(c1);
-        //        context.SaveChanges();
-
-        //        var result = await context.Company.FirstAsync();
-
-        //        Assert.Equal(1,result.ID);
-        //    }
-
-        //}
-
-        //test GetCompanyInfocontroller's method--> GetCompany(int id)
-             [Fact]
+        /// <summary>
+        /// test GetCompanyInfocontroller's method--> GetCompany(int id)
+        /// </summary>
+        [Fact]
         public async void CanGetCompaniesByID()
         {
             DbContextOptions<GitHiredApiDbContext> options = new DbContextOptionsBuilder<GitHiredApiDbContext>()
@@ -71,7 +49,9 @@ namespace APITDD
 
         }
 
-        //test GetCompanyInfoController's method-->GetCompany()
+        /// <summary>
+        /// test GetCompanyInfoController's method-->GetCompany()
+        /// </summary>
 
         [Fact]
         public async void CanGetAllCompanies()
@@ -114,7 +94,9 @@ namespace APITDD
         }
 
 
-        //Getter -->Models-->Company-->ID
+        /// <summary>
+        /// Getter -->Models-->Company-->ID
+        /// </summary>
         [Fact]
         public void canGetCompanyId()
         {
@@ -122,7 +104,10 @@ namespace APITDD
             c1.ID = 1;
             Assert.True(c1.ID==1);
         }
-        //setter -->Models-->Company-->ID
+
+        /// <summary>
+        /// setter -->Models-->Company-->ID
+        /// </summary>
         [Fact]
         public void cansetCompanyId()
         {
@@ -133,7 +118,9 @@ namespace APITDD
         }
 
 
-        //Getter -->Models-->Company-->Name
+        /// <summary>
+        /// Getter -->Models-->Company-->Name
+        /// </summary>
         [Fact]
         public void canGetCompanyName()
         {
@@ -167,7 +154,9 @@ namespace APITDD
             c1.Website = "www.mini.com";
             Assert.True(c1.Website == "www.mini.com");
         }
-        //setter -->Models-->Company-->Website
+        /// <summary>
+        /// setter -->Models-->Company-->Website
+        /// </summary>
         [Fact]
         public void cansetCompanyWebsite()
         {
@@ -767,7 +756,9 @@ namespace APITDD
         }
 
 
-        //Test-->Controller-->SkillsController-->SkillsData()
+        /// <summary>
+        /// Test-->Controller-->SkillsController-->SkillsData()
+        /// </summary>
         [Fact]
         public async  void cangetSkillsData()
         {

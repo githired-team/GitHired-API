@@ -22,7 +22,10 @@ namespace GitHiredApi.Controllers
         }
 
 
-
+        /// <summary>
+        /// get all companies from the database return a company list
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public async Task<ActionResult> GetCompanies()
         {
@@ -31,9 +34,15 @@ namespace GitHiredApi.Controllers
             return  Ok(companies);
 
         }
-        
 
-        // GET: api/Todo/5
+
+
+
+        /// <summary>
+        /// pass in an id to query the sepcific company in the database
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id}")]
         public async Task <ActionResult<Company>> GetCompany(int id)
         {
