@@ -31,7 +31,7 @@ namespace GitHiredApi.Controllers
         /// <param name="query"></param>
         /// <returns></returns>
         [HttpGet]
-        public async Task<ActionResult<List<JobPosting>>> Search(string query)
+        public async Task<ActionResult> Search(string query)
         {
             List<JobPosting> jobs;
 
@@ -46,8 +46,8 @@ namespace GitHiredApi.Controllers
             {
                 string[] searchTerms = query.Split(" ");
 
-                jobs = await _context.Jobs.Where(j => searchTerms.Any(j.JobTitle.ToLower().Contains)
-                                                   || searchTerms.Any(j.Description.ToLower().Contains))
+                jobs = await _context.Jobs.Where(j => searchTerms.Any(st => j.JobTitle.ToLower().Contains(st))
+                                                   || searchTerms.Any(st => j.Description.ToLower().Contains(st)))
                                           .Include(j => j.Company)
                                           .Include(j => j.RequiredSkills)
                                             .ThenInclude(rs => rs.Skill)
@@ -55,7 +55,7 @@ namespace GitHiredApi.Controllers
                                           .ToListAsync();
             }
 
-            return Ok(jobs);
+            return Ok(new { jobs, query });
         }
 
        
