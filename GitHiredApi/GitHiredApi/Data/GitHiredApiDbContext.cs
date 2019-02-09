@@ -82,7 +82,85 @@ namespace GitHiredApi.Data
                      WageRange = "5-6 Xolthar-Class Power Crystals/Month, DOE",
                      ApplicationUrl = "www.WayCoolerThanYourTechCompany.com/N00bCrushers/apply"
 
-                 });
+                 },
+                 new Job
+                 {
+                     ID = 4,
+                     CompanyID = 2,
+                     JobTitle = "CSS Master",
+                     Description = "Be able to CSS a website like a dog show groomer",
+                     Location = "Seattle,WA",
+                     WageRange = "2k monthly",
+                     ApplicationUrl = "www.AmazeCats.com/CatsAmazingOnFrontEnd"
+
+                 },
+                 new Job
+                 {
+                     ID = 5,
+                     CompanyID = 3,
+                     JobTitle = "Java Expert",
+                     Description = "30+ years of experience with Java",
+                     Location = "Spokane,WA",
+                     WageRange = "15k monthly",
+                     ApplicationUrl = "www.hto.com/bob"
+
+                 },
+                 new Job
+                 {
+                     ID = 6,
+                     CompanyID = 3,
+                     JobTitle = "Javascript Guru",
+                     Description = "1+ years of experience with React.js. Gotta be a cool cat and like other cool cats, and CSS.",
+                     Location = "Tacoma,WA",
+                     WageRange = "5k monthly",
+                     ApplicationUrl = "www.Something.com/Funny"
+
+                 },
+                 new Job
+                 {
+                     ID = 7,
+                     CompanyID = 2,
+                     JobTitle = "C# Know-It-All",
+                     Description = "11+ years of experience with C#. Must LOVE cats!!!",
+                     Location = "Mercer Island,WA",
+                     WageRange = "50k monthly",
+                     ApplicationUrl = "www.Cool.com/Cats"
+
+                 },
+                 new Job
+                 {
+                     ID = 8,
+                     CompanyID = 3,
+                     JobTitle = "C# Intern",
+                     Description = "No years of experience with C#.",
+                     Location = "Kent,WA",
+                     WageRange = "1k monthly",
+                     ApplicationUrl = "www.Banana.com/Slug"
+
+                 },
+                 new Job
+                 {
+                     ID = 9,
+                     CompanyID = 2,
+                     JobTitle = "Python Wrangler",
+                     Description = "1+ years of experience with React.js. Gotta be a cool cat and like other cool cats, and CSS.",
+                     Location = "Renton,WA",
+                     WageRange = "5k monthly",
+                     ApplicationUrl = "www.NotSnakes.com/Python code"
+
+                 },
+                 new Job
+                 {
+                     ID = 10,
+                     CompanyID = 1,
+                     JobTitle = "Ruby on Rails Cross Continent",
+                     Description = "13+ years of experience with Ruby and not the jewlery type.",
+                     Location = "Shoreline,WA",
+                     WageRange = "5k monthly",
+                     ApplicationUrl = "www.OMG.com/NotDiamonds"
+
+                 }
+                 );
 
             modelBuilder.Entity<Skill>().HasData(
                 new Skill

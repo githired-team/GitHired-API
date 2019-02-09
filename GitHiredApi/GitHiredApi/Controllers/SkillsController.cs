@@ -21,6 +21,11 @@ namespace GitHiredApi.Controllers
             _context = context;
         }
 
+
+        /// <summary>
+        /// get all skills from skills table return skilcounts list
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public async Task<ActionResult> SkillsData()
         {
