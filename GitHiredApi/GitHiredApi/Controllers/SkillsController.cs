@@ -21,14 +21,24 @@ namespace GitHiredApi.Controllers
             _context = context;
         }
 
+
+        /// <summary>
+        /// get all skills from skills table return skilcounts list
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public async Task<ActionResult> SkillsData()
         {
-            List<SkillCount> skillCounts = await _context.Skills.Include("RequiredSkills")
+            List<SkillCount> skillCounts = await _context.Skills.Include(s => s.RequiredSkills)
                                                          .Select(s => new SkillCount(s.RequiredSkills.Count, s.SkillName))
                                                          .ToListAsync();
 
             return Ok(new { skillCounts });
         }
+
+        
     }
 }
+
+
+

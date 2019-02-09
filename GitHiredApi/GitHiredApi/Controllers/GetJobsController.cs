@@ -21,10 +21,15 @@ namespace GitHiredApi.Controllers
             _context = context;
         }
 
-        // Takes in a search query and returns an object containing a list of all jobs whose title or description
-        //   contains the given query string.
-        //  If no query string is provided, or the query string is empty, data for all jobs in our database 
-        //   is returned. 
+
+        /// <summary>
+        /// Takes in a search query and returns an object containing a list of all jobs whose title or description
+        ///contains the given query string.
+         /// If no query string is provided, or the query string is empty, data for all jobs in our database 
+         ///  is returned.
+        /// </summary>
+        /// <param name="query"></param>
+        /// <returns></returns>
         [HttpGet]
         public async Task<ActionResult> Search(string query)
         {
@@ -32,20 +37,23 @@ namespace GitHiredApi.Controllers
 
             if (query == null || query == "")
             {
-                jobs = await _context.Jobs.Include("Company")
-                                          .Include("RequiredSkills.Skill")
+                jobs = await _context.Jobs.Include(j => j.Company)
+                                          .Include(j => j.RequiredSkills)
+                                            .ThenInclude(rs => rs.Skill)
                                           .Select(j => new JobPosting(j))
                                           .ToListAsync();
             } else
             {
                 query = query.ToLower();
+                string[] searchTerms = query.Split(" ");
 
-                jobs = await _context.Jobs.Where(j => j.JobTitle.ToLower().Contains(query)
-                                                   || j.Description.ToLower().Contains(query))
-                                           .Include("Company")
-                                           .Include("RequiredSkills.Skill")
-                                           .Select(j => new JobPosting(j))
-                                           .ToListAsync();
+                jobs = await _context.Jobs.Where(j => searchTerms.Any(st => j.JobTitle.ToLower().Contains(st))
+                                                   || searchTerms.Any(st => j.Description.ToLower().Contains(st)))
+                                          .Include(j => j.Company)
+                                          .Include(j => j.RequiredSkills)
+                                            .ThenInclude(rs => rs.Skill)
+                                          .Select(j => new JobPosting(j))
+                                          .ToListAsync();
             }
 
             return Ok(new { jobs, query });
