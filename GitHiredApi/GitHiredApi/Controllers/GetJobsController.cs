@@ -44,6 +44,7 @@ namespace GitHiredApi.Controllers
                                           .ToListAsync();
             } else
             {
+                query = query.ToLower();
                 string[] searchTerms = query.Split(" ");
 
                 jobs = await _context.Jobs.Where(j => searchTerms.Any(st => j.JobTitle.ToLower().Contains(st))
