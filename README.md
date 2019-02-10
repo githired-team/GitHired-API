@@ -20,7 +20,7 @@ None for API because it is back end (there will be images for use later)
 
 
 
-##API Description:
+## API Description
 GitHired api has three enpoints: GetCompanyInfo, Getjobs and Skills.
 
 For instance:
