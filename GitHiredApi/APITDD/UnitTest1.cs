@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Collections.Generic;
 using System.Collections;
+using GitHiredApi.Helpers;
 
 namespace APITDD
 {
@@ -797,6 +798,107 @@ namespace APITDD
                 var result = await _controller.SkillsData() as OkObjectResult;
                 Assert.Equal(200, result.StatusCode);
             }
+
+        }
+
+        /// <summary>
+        /// Test-->HElper-->skillcount-->Getter-->count
+        /// </summary>
+        [Fact]
+        public void GetskillCount()
+        {
+            SkillCount sc = new SkillCount();
+            sc.count = 2;
+            Assert.Equal(2, sc.count);
+
+        }
+
+        /// <summary>
+        /// Test-->HElper-->skillcount-->Setter-->count
+        /// </summary>
+
+        [Fact]
+        public void SetskillCount()
+        {
+            SkillCount sc = new SkillCount();
+            sc.count = 2;
+            sc.count = 3;
+            Assert.Equal(3, sc.count);
+
+        }
+        /// <summary>
+        /// Test-->HElper-->skillcount-->Getter-->Name
+        /// </summary>
+        [Fact]
+        public void GetskillName()
+        {
+            SkillCount sc = new SkillCount();
+            sc.name = ".net";
+            Assert.Equal(".net", sc.name);
+
+        }
+
+
+        /// <summary>
+        /// Test-->HElper-->skillcount-->Setter-->Name
+        /// </summary>
+        [Fact]
+        public void setskillName()
+        {
+            SkillCount sc = new SkillCount();
+            sc.name = ".net";
+            sc.name = "js";
+            Assert.Equal("js", sc.name);
+
+        }
+
+
+        /// <summary>
+        /// Test-->HElper-->Jobposting-->Getter
+        /// </summary>
+
+        [Fact]
+        public void GetJoblisting()
+        {
+            Job newjob = new Job();
+         RequiredSkill rq  = new RequiredSkill();
+            RequiredSkill rq2 = new RequiredSkill();
+            rq.Skill = new Skill();
+            rq.Skill.SkillName = "java";
+            rq2.Skill = new Skill();
+            rq2.Skill.SkillName = "c++";
+            List<RequiredSkill> list = new List<RequiredSkill>();
+            list.Add(rq);
+            list.Add(rq2);
+            newjob.RequiredSkills = list;
+            JobPosting jp = new JobPosting(newjob);
+           
+            Assert.Equal("java", jp.Skillset[0]);
+            Assert.Equal("c++", jp.Skillset[1]);
+
+
+        }
+        /// <summary>
+        /// setter-->jobposting
+        /// </summary>
+        [Fact]
+        public void setJoblisting()
+        {
+            Job newjob = new Job();
+            RequiredSkill rq = new RequiredSkill();
+            RequiredSkill rq2 = new RequiredSkill();
+            rq.Skill = new Skill();
+            rq.Skill.SkillName = "java";
+            rq2.Skill = new Skill();
+            rq2.Skill.SkillName = "c++";
+            List<RequiredSkill> list = new List<RequiredSkill>();
+            list.Add(rq);
+            list.Add(rq2);
+            newjob.RequiredSkills = list;
+            JobPosting jp = new JobPosting(newjob);
+            jp.Skillset[0] = "sqlserver";
+            Assert.Equal("sqlserver", jp.Skillset[0]);
+
 
         }
 
