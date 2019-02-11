@@ -34,4 +34,4 @@ GitHired api has three enpoints: GetCompanyInfo, Getjobs and Skills.
 For more information, refer to the linked Swagger UI documentation.
 
 #### Example of information returned from API call:
-![APIreturnedDate](assests/APIReturnData.JPG)
+![APIreturnedDate](assets/APIReturnData.JPG)
