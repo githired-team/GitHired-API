@@ -1,4 +1,4 @@
-# GitHired-API - [Link to Azure Deployment](https://githiredapi.azurewebsites.net/api/)
+# [GitHired-API](https://githiredapi.azurewebsites.net/api/)
 
 RESTful API that provides data about active job postings, employers, and data about the skills that job postings mention as requirements. 
 
@@ -17,7 +17,9 @@ Swagger documentation at: [Link to Swagger UI](https://githiredapi.azurewebsites
 -RequiredSkills: Contains a list of associations between job postings and the skills they mention as requirements
 
 
-## API Description
+## Endpoints
+Base URL: https://githiredapi.azurewebsites.net/api/
+
 GitHired api has three enpoints: GetCompanyInfo, Getjobs and Skills.
 
 `/GetJobs` is the primary endpoint for this API. It accepts a string as an optional URL query parameter, and returns all job postings whose title or description contains a word within that query string (or all job posting data if no query is provided). 
@@ -29,7 +31,7 @@ GitHired api has three enpoints: GetCompanyInfo, Getjobs and Skills.
 
 For more information, refer to the linked Swagger UI documentation.
 
-Getjobs api Url(Deployed on Azure): https://githiredapi.azurewebsites.net/api/
+
 
 
 
