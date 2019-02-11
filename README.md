@@ -5,9 +5,11 @@ RESTful API that provides data about active job postings, employers, and data ab
 Swagger documentation at: [Link to Swagger UI](https://githiredapi.azurewebsites.net/swagger/index.html)
 
 
-## GitHired Team Members: Richard Flinn Mike Filicetti, Xia Liu, Julie Ly, Sean Miller
+### GitHired Team Members: Richard Flinn Mike Filicetti, Xia Liu, Julie Ly, Sean Miller
 
-### Group Kanban: https://waffle.io/githired-team/GitHired-API
+#### Project Management
+We utilized Waffle as our Kanban board to keep our team organized: 
+https://waffle.io/githired-team/GitHired-API
 
 ## Database Schema
 ![Database Schema](assets/apiSchema.JPG)
@@ -31,12 +33,5 @@ GitHired api has three enpoints: GetCompanyInfo, Getjobs and Skills.
 
 For more information, refer to the linked Swagger UI documentation.
 
-
-
-
-
-## User Cases
-![User Case](/UserStories.md)
-
-## Software Requirements
-![Software Requirements](https://github.com/githired-team/GitHired-MVC/blob/DevelopmentStaging/Requirements.md)
+#### Example of information returned from API call:
+![APIreturnedDate](assests/APIReturnData.JPG)
