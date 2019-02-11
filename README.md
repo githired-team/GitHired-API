@@ -1,6 +1,8 @@
-# GitHired-API
-C# API web Application that works as a melting pot for job searching and skills needed for those jobs
+# GitHired-API - [Link to Azure Deployment](https://githiredapi.azurewebsites.net/api/)
 
+RESTful API that provides data about active job postings, employers, and data about the skills that job postings mention as requirements. 
+
+Swagger documentation at: [Link to Swagger UI](https://githiredapi.azurewebsites.net/swagger/index.html)
 
 
 ## GitHired Team Members: Richard Flinn Mike Filicetti, Xia Liu, Julie Ly, Sean Miller
@@ -9,29 +11,26 @@ C# API web Application that works as a melting pot for job searching and skills 
 
 ## Database Schema
 ![Database Schema](assets/apiSchema.JPG)
-- Table Company: This table will contain the information for a company who is posting a job offer.
-- Table Jobs: This table will contain the information for the job listings
-- Table Required Skills: This table will list the skill key words from a job listing
-
-
-## Wire Frames
-None for API because it is back end (there will be images for use later)
-
-
+- Companies: Contains data about individual employers. 
+- Jobs: Contains data for individual job listings. 
+- Skills: Contains a list of individual skills that can then be associated with individual job postings via the "RequiredSkills" join table
+-RequiredSkills: Contains a list of associations between job postings and the skills they mention as requirements
 
 
 ## API Description
 GitHired api has three enpoints: GetCompanyInfo, Getjobs and Skills.
 
-For instance:
-Here is the api url for getjobs, when user hit search request from front end, call the api and will return a trunck of data based on user request keywods.
-Getjobs api Url(Deployed on Azure): https://githiredapi.azurewebsites.net/api/GetJobs
+`/GetJobs` is the primary endpoint for this API. It accepts a string as an optional URL query parameter, and returns all job postings whose title or description contains a word within that query string (or all job posting data if no query is provided). 
 
+`/GetCompanyInfo` returns all data for all companies contained within the GitHiredApi database.
+`/GetCompanyInfo/{id}` returns data on the company with a given ID, as well as all job postings associated with that company. This endpoint is primarily intended for use with the data returned by the /GetJobs endpoint, as each job posting contains a company ID which may be used to reference a company via this endpoint.
 
-Data sample:
+`/Skills` returns data on how many times each skill registered in the GitHiredApi database is associated with a job posting.
 
+For more information, refer to the linked Swagger UI documentation.
 
-![datasample](data.png)
+Getjobs api Url(Deployed on Azure): https://githiredapi.azurewebsites.net/api/
+
 
 
 ## User Cases
