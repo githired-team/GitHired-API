@@ -12,7 +12,7 @@ We utilized Waffle as our Kanban board to keep our team organized:
 https://waffle.io/githired-team/GitHired-API
 
 ## Database Schema
-![Database Schema](assets/apiSchema.JPG)
+![Database Schema](assets/api_db_schema.png)
 - Companies: Contains data about individual employers. 
 - Jobs: Contains data for individual job listings. 
 - Skills: Contains a list of individual skills that can then be associated with individual job postings via the "RequiredSkills" join table
